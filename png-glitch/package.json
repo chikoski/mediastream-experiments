@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@types/dom-mediacapture-transform": "^0.1.10"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.5.1",
+    "@swc/core": "^1.9.3",
+    "typescript": "^5.7.2"
+  }
+}
