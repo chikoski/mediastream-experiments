@@ -902,7 +902,7 @@ macro_rules! __export_png_glitcher_impl {
 #[doc(inline)]
 pub(crate) use __export_png_glitcher_impl as export;
 #[cfg(target_arch = "wasm32")]
-#[link_section = "component-type:wit-bindgen:0.31.0:chikoski:glitch-art@0.3.4:png-glitcher:encoded world"]
+#[link_section = "component-type:wit-bindgen:0.35.0:chikoski:glitch-art@0.3.4:png-glitcher:encoded world"]
 #[doc(hidden)]
 pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 769] = *b"\
 \0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xfe\x04\x01A\x02\x01\
@@ -917,10 +917,10 @@ self\x04\0\x01\x04\0![method]scan-line.get-filter-type\x01\x05\x01@\x02\x04self\
 self\x04\x06pixels\x0a\x01\0\x04\0\x17[method]scan-line.write\x01\x0d\x01h\x03\x01\
 i\x02\x01p\x0f\x01@\x01\x04self\x0e\0\x10\x04\0\x1a[method]png.get-scan-lines\x01\
 \x11\x01@\x01\x04self\x0e\0\x0b\x04\0\x10[method]png.read\x01\x12\x01i\x03\x01j\x01\
-\x13\0\x01@\x01\x04data\x0a\0\x14\x04\0\x12[static]png.create\x01\x15\x04\x01(ch\
-ikoski:glitch-art/png-glitchable@0.3.4\x05\0\x04\x01&chikoski:glitch-art/png-gli\
-tcher@0.3.4\x04\0\x0b\x12\x01\0\x0cpng-glitcher\x03\0\0\0G\x09producers\x01\x0cp\
-rocessed-by\x02\x0dwit-component\x070.216.0\x10wit-bindgen-rust\x060.31.0";
+\x13\0\x01@\x01\x04data\x0a\0\x14\x04\0\x12[static]png.create\x01\x15\x04\0(chik\
+oski:glitch-art/png-glitchable@0.3.4\x05\0\x04\0&chikoski:glitch-art/png-glitche\
+r@0.3.4\x04\0\x0b\x12\x01\0\x0cpng-glitcher\x03\0\0\0G\x09producers\x01\x0cproce\
+ssed-by\x02\x0dwit-component\x070.220.0\x10wit-bindgen-rust\x060.35.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {
