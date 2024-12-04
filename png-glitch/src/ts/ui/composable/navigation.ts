@@ -1,4 +1,3 @@
-
 type Content = () => Promise<HTMLElement>;
 export class NavigationHost {
 	routes: Map<string, Content> = new Map();
@@ -27,9 +26,7 @@ export class NavigationHost {
 		}
 	}
 }
-type RouteGraph = (navHost: NavigationHost) => void;
-export function Navigation(
-	navHost: NavigationHost,
-	graph: RouteGraph) {
+type NavigationGraph = (navHost: NavigationHost) => void;
+export function Navigation(navHost: NavigationHost, graph: NavigationGraph) {
 	graph(navHost);
 }
