@@ -1,9 +1,13 @@
 #[allow(warnings)]
 mod bindings;
 
-use bindings::chikoski::glitch_art::png_glitchable::{Png, ScanLine, FilterType};
-use bindings::exports::chikoski::glitch_art::bridge_to_png_glitchable::{Guest, Png as ExportedPng};
-use bindings::exports::chikoski::glitch_art::png_glitchable::{GuestPng, GuestScanLine, FilterType as ExportedFilterType, ScanLine as ExportedScanLine, Guest as GuestGlitchable};
+use std::cell::RefCell;
+use std::io::{Read, Write};
+use png_glitch::{FilterType, PngGlitch, ScanLine};
+use bindings::exports::chikoski::glitch_art::png_glitchable::FilterType as ExportedFilterType;
+use bindings::exports::chikoski::glitch_art::png_glitchable::ScanLine as ExportedScanLine;
+use bindings::exports::chikoski::glitch_art::png_glitchable::{GuestPng, Png, Guest, GuestScanLine};
+use crate::bindings::export;
 
 impl From<FilterType> for ExportedFilterType {
     fn from(value: FilterType) -> Self {
@@ -29,26 +33,26 @@ impl From<ExportedFilterType> for FilterType {
     }
 }
 
-struct ImageData {
+struct BitmapImage {
     data: Vec<u8>,
     width: u32,
     height: u32,
 }
 
-impl ImageData {
-    fn new(data: Vec<u8>, width: u32, height: u32) -> ImageData {
-        ImageData{ data, width, height }
+impl BitmapImage {
+    fn new(data: Vec<u8>, width: u32, height: u32) -> BitmapImage {
+        BitmapImage { data, width, height }
     }
 }
 
-struct PngImageData {
+struct PngImage {
     bytes: Vec<u8>
 }
 
-impl TryFrom<ImageData> for PngImageData {
+impl TryFrom<BitmapImage> for PngImage {
     type Error = ();
 
-    fn try_from(value: ImageData) -> Result<Self, Self::Error> {
+    fn try_from(value: BitmapImage) -> Result<Self, Self::Error> {
         let mut bytes = vec![];
         let mut encoder = png::Encoder::new(&mut bytes, value.width, value.height);
         encoder.set_color(png::ColorType::Rgba);
@@ -57,119 +61,102 @@ impl TryFrom<ImageData> for PngImageData {
         writer.write_image_data(&value.data).map_err(|_| ())?;
         let _ = writer.finish();
         
-        let png_image_data = PngImageData{ bytes };
+        let png_image_data = PngImage { bytes };
         Ok(png_image_data)
     }
 }
 
-struct ScanLineImpl {
-    actual: ScanLine
+struct GuestScanLineImpl {
+    inner: RefCell<ScanLine>
 }
 
-impl ScanLineImpl {
-    fn new(actual: ScanLine) -> ScanLineImpl {
-        ScanLineImpl{ actual }
+impl GuestScanLineImpl {
+    fn new(scan_line: ScanLine) -> GuestScanLineImpl {
+        let inner = RefCell::new(scan_line);
+        GuestScanLineImpl { inner }
     }
 }
 
-impl GuestScanLine for ScanLineImpl {
+impl GuestScanLine for GuestScanLineImpl {
     fn get_filter_type(&self) -> ExportedFilterType {
-        self.actual.get_filter_type().into()
+        self.inner.borrow().filter_type().into()
     }
 
     fn set_filter_type(&self, t: ExportedFilterType) {
-        self.actual.set_filter_type(t.into());
+        self.inner.borrow_mut().set_filter_type(t.into());
     }
 
     fn size(&self) -> u32 {
-        self.actual.size()
+        self.inner.borrow().size()as u32
     }
 
     fn get_pixel_at(&self, index: u32) -> u8 {
-        self.actual.get_pixel_at(index)
+        self.inner.borrow()[index as usize]
     }
 
     fn set_pixel_at(&self, index: u32, value: u8) {
-        self.actual.set_pixel_at(index, value);
+        self.inner.borrow_mut()[index as usize] = value;
     }
 
     fn read(&self) -> Result<Vec<u8>, ()> {
-        self.actual.read()
+        let mut buffer = vec![];
+        self.inner.borrow_mut().read(&mut buffer).map_err(|_| ())?;
+        Ok(buffer)
     }
 
     fn write(&self, pixels: Vec<u8>) {
-        self.actual.write(&pixels);
+        let _ = self.inner.borrow_mut().write(&pixels);
     }
 }
 
-struct PngImpl {
-    actual: Png,
+struct GuestPngImpl {
+    inner: RefCell<PngGlitch>
 }
 
-impl PngImpl {
-    fn new(actual: Png) -> PngImpl {
-        PngImpl{ actual }
+impl GuestPngImpl {
+    fn new(png_image: PngGlitch) -> GuestPngImpl {
+        let inner = RefCell::new(png_image);
+        GuestPngImpl { inner }
     }
 }
 
-impl GuestPng for PngImpl {
+impl GuestPng for GuestPngImpl {
     fn get_scan_lines(&self) -> Vec<ExportedScanLine> {
-        self.actual.get_scan_lines().into_iter().map(|actual| {
-            let scanline= ScanLineImpl::new(actual);
+        self.inner.borrow_mut().scan_lines().into_iter().map(|actual| {
+            let scanline= GuestScanLineImpl::new(actual);
             ExportedScanLine::new(scanline)
         }).collect()
     }
 
     fn read(&self) -> Result<Vec<u8>, ()> {
-        self.actual.read()
+        let mut buffer = vec![];
+        self.inner.borrow_mut().encode(&mut buffer).map_err(|_| ())?;
+        Ok(buffer)
     }
 
-    fn create(data: Vec<u8>) -> Result<ExportedPng, ()> {
-        let actual = Png::create(&data)?;
-        let png = PngImpl::new(actual);
-        let png = ExportedPng::new(png);
-        Ok(png)
-    }
-}
-
-impl TryFrom<PngImageData> for PngImpl {
-    type Error = ();
-
-    fn try_from(value: PngImageData) -> Result<Self, Self::Error> {
-        let value = Png::create(&value.bytes)?;
-        let value = PngImpl::new(value);
-        Ok(value)
+    fn create(data: Vec<u8>, width: u32, height: u32) -> Result<Png, ()> {
+        let bitmap = BitmapImage::new(data, width, height);
+        let png_image = PngImage::try_from(bitmap).map_err(|_| ())?;
+        let guest_png = GuestPngImpl::try_from(png_image)?;
+        Ok(Png::new(guest_png))
     }
 }
 
-impl TryFrom<ImageData> for PngImpl {
+impl TryFrom<PngImage> for GuestPngImpl {
     type Error = ();
 
-    fn try_from(value: ImageData) -> Result<Self, Self::Error> {
-        let value = PngImageData::try_from(value)?;
-        PngImpl::try_from(value)
+    fn try_from(value: PngImage) -> Result<Self, Self::Error> {
+        let png_glitch = PngGlitch::new(value.bytes).map_err(|_| ())?;
+        let guest_png = GuestPngImpl::new(png_glitch);
+        Ok(guest_png)
     }
 }
 
 struct Component;
 
 impl Guest for Component {
-    fn create(
-        data: Vec<u8>,
-        width: u32,
-        height: u32,
-    ) -> Result<ExportedPng, ()> {
-        let image_data = ImageData::new(data, width, height);
-        let value = PngImpl::try_from(image_data)?;
-        let value = ExportedPng::new(value);
-        Ok(value)
-    }
+    type ScanLine = GuestScanLineImpl;
+    type Png = GuestPngImpl;
 }
 
-impl GuestGlitchable for Component {
-    type ScanLine = ScanLineImpl;
-
-    type Png = PngImpl;
-}
-
-bindings::export!(Component with_types_in bindings);
+export!(Component with_types_in bindings);

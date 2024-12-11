@@ -18,9 +18,9 @@ export namespace ChikoskiGlitchArtPngGlitchable {
 export type FilterType = 'none' | 'sub' | 'up' | 'average' | 'paeth';
 
 export class Png {
-  getScanLines(): ScanLine[];
+  getScanLines(): Array<ScanLine>;
   read(): Uint8Array;
-  static create(data: Uint8Array): Png;
+  static create(data: Uint8Array, width: number, height: number): Png;
 }
 
 export class ScanLine {

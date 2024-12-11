@@ -1,5 +1,5 @@
 import type { Size } from "./model/size";
-import { bridgeToPngGlitchable } from "./png-glitchable/png-glitch"
+import { pngGlitchable } from "./png-glitchable/png-glitch"
 
 console.log("from worker");
 
@@ -66,14 +66,14 @@ class VisualEffect {
         const imageData = gc.getImageData(0, 0, this.width, this.height);
         const buffer = new Uint8Array(imageData.data);
         
-        const glitcher = await bridgeToPngGlitchable.create(buffer, this.width, this.height);
-        /*
+        const glitcher = await pngGlitchable.Png.create(buffer, this.width, this.height);
+        
         glitcher.getScanLines().forEach((scanLine, index) => {
             if(index % 351 < 40) {
                 scanLine.setFilterType("paeth");
             }
         });
-        */
+        
         const glitched = glitcher.read();
         const image = await createImageFromPng(glitched);
         gc.drawImage(image, 0, 0);
