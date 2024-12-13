@@ -75,11 +75,8 @@ class GlitchFilter {
         });
         
         const glitched = glitcher.read();
-        const image = await createImageFromPng(glitched);
-        gc.drawImage(image, 0, 0);
-		const bitmap = this.canvas.transferToImageBitmap();
+        const bitmap = await createImageFromPng(glitched);
         const videoFrame = new VideoFrame(bitmap, { timestamp: frame.timestamp });
-
         frame.close();
         conteroller.enqueue(videoFrame);
 	}
