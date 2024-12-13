@@ -7,12 +7,12 @@ console.log("from worker");
 onmessage = async (message) => {
 	if (message.data.command === "start") {
 		const { readable, writable, size } = message.data;
-		const ve = new VisualEffect(size);
+		const ve = new GlitchFilter(size);
 		readable.pipeThrough(ve.filter).pipeTo(writable);
 	}
 };
 
-class VisualEffect {
+class GlitchFilter {
 	filter: TransformStream;
 	private canvas: OffscreenCanvas;
 	private gc: OffscreenCanvasRenderingContext2D | null;
