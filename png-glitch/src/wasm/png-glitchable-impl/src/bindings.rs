@@ -166,7 +166,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-drop]scan-line"]
@@ -287,7 +287,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-drop]png"]
@@ -537,7 +537,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-new]scan-line"]
@@ -559,7 +559,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-rep]scan-line"]
@@ -590,7 +590,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-new]png"]
@@ -612,7 +612,7 @@ pub mod exports {
                         #[cfg(target_arch = "wasm32")]
                         {
                             #[link(
-                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.4"
+                                wasm_import_module = "[export]chikoski:glitch-art/png-glitchable@0.3.6"
                             )]
                             extern "C" {
                                 #[link_name = "[resource-rep]png"]
@@ -626,91 +626,91 @@ pub mod exports {
                     fn create(data: _rt::Vec<u8>) -> Result<Png, ()>;
                 }
                 #[doc(hidden)]
-                macro_rules! __export_chikoski_glitch_art_png_glitchable_0_3_4_cabi {
+                macro_rules! __export_chikoski_glitch_art_png_glitchable_0_3_6_cabi {
                     ($ty:ident with_types_in $($path_to_types:tt)*) => {
                         const _ : () = { #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.get-filter-type"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.get-filter-type"]
                         unsafe extern "C" fn export_method_scan_line_get_filter_type(arg0
                         : * mut u8,) -> i32 { $($path_to_types)*::
                         _export_method_scan_line_get_filter_type_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0) } #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.set-filter-type"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.set-filter-type"]
                         unsafe extern "C" fn export_method_scan_line_set_filter_type(arg0
                         : * mut u8, arg1 : i32,) { $($path_to_types)*::
                         _export_method_scan_line_set_filter_type_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0, arg1) }
                         #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.size"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.size"]
                         unsafe extern "C" fn export_method_scan_line_size(arg0 : * mut
                         u8,) -> i32 { $($path_to_types)*::
                         _export_method_scan_line_size_cabi::<<$ty as $($path_to_types)*::
                         Guest >::ScanLine > (arg0) } #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.get-pixel-at"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.get-pixel-at"]
                         unsafe extern "C" fn export_method_scan_line_get_pixel_at(arg0 :
                         * mut u8, arg1 : i32,) -> i32 { $($path_to_types)*::
                         _export_method_scan_line_get_pixel_at_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0, arg1) }
                         #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.set-pixel-at"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.set-pixel-at"]
                         unsafe extern "C" fn export_method_scan_line_set_pixel_at(arg0 :
                         * mut u8, arg1 : i32, arg2 : i32,) { $($path_to_types)*::
                         _export_method_scan_line_set_pixel_at_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0, arg1, arg2) }
                         #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.read"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.read"]
                         unsafe extern "C" fn export_method_scan_line_read(arg0 : * mut
                         u8,) -> * mut u8 { $($path_to_types)*::
                         _export_method_scan_line_read_cabi::<<$ty as $($path_to_types)*::
                         Guest >::ScanLine > (arg0) } #[export_name =
-                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.read"]
+                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.read"]
                         unsafe extern "C" fn _post_return_method_scan_line_read(arg0 : *
                         mut u8,) { $($path_to_types)*::
                         __post_return_method_scan_line_read::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0) } #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]scan-line.write"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.write"]
                         unsafe extern "C" fn export_method_scan_line_write(arg0 : * mut
                         u8, arg1 : * mut u8, arg2 : usize,) { $($path_to_types)*::
                         _export_method_scan_line_write_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (arg0, arg1, arg2) }
                         #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]png.get-scan-lines"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]png.get-scan-lines"]
                         unsafe extern "C" fn export_method_png_get_scan_lines(arg0 : *
                         mut u8,) -> * mut u8 { $($path_to_types)*::
                         _export_method_png_get_scan_lines_cabi::<<$ty as
                         $($path_to_types)*:: Guest >::Png > (arg0) } #[export_name =
-                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.4#[method]png.get-scan-lines"]
+                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.6#[method]png.get-scan-lines"]
                         unsafe extern "C" fn _post_return_method_png_get_scan_lines(arg0
                         : * mut u8,) { $($path_to_types)*::
                         __post_return_method_png_get_scan_lines::<<$ty as
                         $($path_to_types)*:: Guest >::Png > (arg0) } #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[method]png.read"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[method]png.read"]
                         unsafe extern "C" fn export_method_png_read(arg0 : * mut u8,) ->
                         * mut u8 { $($path_to_types)*::
                         _export_method_png_read_cabi::<<$ty as $($path_to_types)*:: Guest
                         >::Png > (arg0) } #[export_name =
-                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.4#[method]png.read"]
+                        "cabi_post_chikoski:glitch-art/png-glitchable@0.3.6#[method]png.read"]
                         unsafe extern "C" fn _post_return_method_png_read(arg0 : * mut
                         u8,) { $($path_to_types)*:: __post_return_method_png_read::<<$ty
                         as $($path_to_types)*:: Guest >::Png > (arg0) } #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[static]png.create"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[static]png.create"]
                         unsafe extern "C" fn export_static_png_create(arg0 : * mut u8,
                         arg1 : usize,) -> * mut u8 { $($path_to_types)*::
                         _export_static_png_create_cabi::<<$ty as $($path_to_types)*::
                         Guest >::Png > (arg0, arg1) } const _ : () = { #[doc(hidden)]
                         #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[dtor]scan-line"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[dtor]scan-line"]
                         #[allow(non_snake_case)] unsafe extern "C" fn dtor(rep : * mut
                         u8) { $($path_to_types)*:: ScanLine::dtor::< <$ty as
                         $($path_to_types)*:: Guest >::ScanLine > (rep) } }; const _ : ()
                         = { #[doc(hidden)] #[export_name =
-                        "chikoski:glitch-art/png-glitchable@0.3.4#[dtor]png"]
+                        "chikoski:glitch-art/png-glitchable@0.3.6#[dtor]png"]
                         #[allow(non_snake_case)] unsafe extern "C" fn dtor(rep : * mut
                         u8) { $($path_to_types)*:: Png::dtor::< <$ty as
                         $($path_to_types)*:: Guest >::Png > (rep) } }; };
                     };
                 }
                 #[doc(hidden)]
-                pub(crate) use __export_chikoski_glitch_art_png_glitchable_0_3_4_cabi;
+                pub(crate) use __export_chikoski_glitch_art_png_glitchable_0_3_6_cabi;
                 #[repr(align(4))]
                 struct _RetArea([::core::mem::MaybeUninit<u8>; 12]);
                 static mut _RET_AREA: _RetArea = _RetArea(
@@ -894,7 +894,7 @@ macro_rules! __export_png_glitcher_impl {
     };
     ($ty:ident with_types_in $($path_to_types_root:tt)*) => {
         $($path_to_types_root)*::
-        exports::chikoski::glitch_art::png_glitchable::__export_chikoski_glitch_art_png_glitchable_0_3_4_cabi!($ty
+        exports::chikoski::glitch_art::png_glitchable::__export_chikoski_glitch_art_png_glitchable_0_3_6_cabi!($ty
         with_types_in $($path_to_types_root)*::
         exports::chikoski::glitch_art::png_glitchable);
     };
@@ -902,7 +902,7 @@ macro_rules! __export_png_glitcher_impl {
 #[doc(inline)]
 pub(crate) use __export_png_glitcher_impl as export;
 #[cfg(target_arch = "wasm32")]
-#[link_section = "component-type:wit-bindgen:0.35.0:chikoski:glitch-art@0.3.4:png-glitcher:encoded world"]
+#[link_section = "component-type:wit-bindgen:0.31.0:chikoski:glitch-art@0.3.6:png-glitcher:encoded world"]
 #[doc(hidden)]
 pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 769] = *b"\
 \0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xfe\x04\x01A\x02\x01\
@@ -917,10 +917,10 @@ self\x04\0\x01\x04\0![method]scan-line.get-filter-type\x01\x05\x01@\x02\x04self\
 self\x04\x06pixels\x0a\x01\0\x04\0\x17[method]scan-line.write\x01\x0d\x01h\x03\x01\
 i\x02\x01p\x0f\x01@\x01\x04self\x0e\0\x10\x04\0\x1a[method]png.get-scan-lines\x01\
 \x11\x01@\x01\x04self\x0e\0\x0b\x04\0\x10[method]png.read\x01\x12\x01i\x03\x01j\x01\
-\x13\0\x01@\x01\x04data\x0a\0\x14\x04\0\x12[static]png.create\x01\x15\x04\0(chik\
-oski:glitch-art/png-glitchable@0.3.4\x05\0\x04\0&chikoski:glitch-art/png-glitche\
-r@0.3.4\x04\0\x0b\x12\x01\0\x0cpng-glitcher\x03\0\0\0G\x09producers\x01\x0cproce\
-ssed-by\x02\x0dwit-component\x070.220.0\x10wit-bindgen-rust\x060.35.0";
+\x13\0\x01@\x01\x04data\x0a\0\x14\x04\0\x12[static]png.create\x01\x15\x04\x01(ch\
+ikoski:glitch-art/png-glitchable@0.3.6\x05\0\x04\x01&chikoski:glitch-art/png-gli\
+tcher@0.3.6\x04\0\x0b\x12\x01\0\x0cpng-glitcher\x03\0\0\0G\x09producers\x01\x0cp\
+rocessed-by\x02\x0dwit-component\x070.216.0\x10wit-bindgen-rust\x060.31.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {

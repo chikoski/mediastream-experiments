@@ -99,7 +99,7 @@ ScanLine.prototype.getFilterType = function getFilterType() {
     throw new TypeError('Resource error: Not a valid "ScanLine" resource.');
   }
   var handle0 = handleTable0[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.get-filter-type'](handle0);
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.get-filter-type'](handle0);
   let enum2;
   switch (ret) {
     case 0: {
@@ -166,7 +166,7 @@ ScanLine.prototype.setFilterType = function setFilterType(arg1) {
       throw new TypeError(`"${val2}" is not one of the cases of filter-type`);
     }
   }
-  exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.set-filter-type'](handle0, enum2);
+  exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.set-filter-type'](handle0, enum2);
 };
 
 ScanLine.prototype.size = function size() {
@@ -175,7 +175,7 @@ ScanLine.prototype.size = function size() {
     throw new TypeError('Resource error: Not a valid "ScanLine" resource.');
   }
   var handle0 = handleTable0[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.size'](handle0);
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.size'](handle0);
   return ret >>> 0;
 };
 
@@ -185,7 +185,7 @@ ScanLine.prototype.getPixelAt = function getPixelAt(arg1) {
     throw new TypeError('Resource error: Not a valid "ScanLine" resource.');
   }
   var handle0 = handleTable0[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.get-pixel-at'](handle0, toUint32(arg1));
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.get-pixel-at'](handle0, toUint32(arg1));
   return clampGuest(ret, 0, 255);
 };
 
@@ -195,7 +195,7 @@ ScanLine.prototype.setPixelAt = function setPixelAt(arg1, arg2) {
     throw new TypeError('Resource error: Not a valid "ScanLine" resource.');
   }
   var handle0 = handleTable0[(handle1 << 1) + 1] & ~T_FLAG;
-  exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.set-pixel-at'](handle0, toUint32(arg1), toUint8(arg2));
+  exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.set-pixel-at'](handle0, toUint32(arg1), toUint8(arg2));
 };
 
 ScanLine.prototype.read = function read() {
@@ -204,7 +204,7 @@ ScanLine.prototype.read = function read() {
     throw new TypeError('Resource error: Not a valid "ScanLine" resource.');
   }
   var handle0 = handleTable0[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.read'](handle0);
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.read'](handle0);
   let variant3;
   switch (dataView(memory0).getUint8(ret + 0, true)) {
     case 0: {
@@ -247,7 +247,7 @@ ScanLine.prototype.write = function write(arg1) {
   var ptr2 = realloc0(0, 0, 1, len2 * 1);
   var src2 = new Uint8Array(val2.buffer || val2, val2.byteOffset, len2 * 1);
   (new Uint8Array(memory0.buffer, ptr2, len2 * 1)).set(src2);
-  exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]scan-line.write'](handle0, ptr2, len2);
+  exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]scan-line.write'](handle0, ptr2, len2);
 };
 const handleTable1 = [T_FLAG, 0];
 const finalizationRegistry1 = finalizationRegistryCreate((handle) => {
@@ -269,7 +269,7 @@ Png.prototype.getScanLines = function getScanLines() {
     throw new TypeError('Resource error: Not a valid "Png" resource.');
   }
   var handle0 = handleTable1[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]png.get-scan-lines'](handle0);
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]png.get-scan-lines'](handle0);
   var len4 = dataView(memory0).getInt32(ret + 4, true);
   var base4 = dataView(memory0).getInt32(ret + 0, true);
   var result4 = [];
@@ -299,7 +299,7 @@ Png.prototype.read = function read() {
     throw new TypeError('Resource error: Not a valid "Png" resource.');
   }
   var handle0 = handleTable1[(handle1 << 1) + 1] & ~T_FLAG;
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[method]png.read'](handle0);
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[method]png.read'](handle0);
   let variant3;
   switch (dataView(memory0).getUint8(ret + 0, true)) {
     case 0: {
@@ -331,13 +331,13 @@ Png.prototype.read = function read() {
   return retVal.val;
 };
 
-Png.create = function create(arg0, arg1, arg2) {
+Png.create = function create(arg0) {
   var val0 = arg0;
   var len0 = val0.byteLength;
   var ptr0 = realloc0(0, 0, 1, len0 * 1);
   var src0 = new Uint8Array(val0.buffer || val0, val0.byteOffset, len0 * 1);
   (new Uint8Array(memory0.buffer, ptr0, len0 * 1)).set(src0);
-  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.5#[static]png.create'](ptr0, len0, toUint32(arg1), toUint32(arg2));
+  const ret = exports1['chikoski:glitch-art/png-glitchable@0.3.6#[static]png.create'](ptr0, len0);
   let variant3;
   switch (dataView(memory0).getUint8(ret + 0, true)) {
     case 0: {
@@ -395,11 +395,11 @@ function trampoline3(handle) {
 const $init = (() => {
   let gen = (function* init () {
     const module0 = fetchCompile(new URL('./png-glitch.core.wasm', import.meta.url));
-    const module1 = base64Compile('AGFzbQEAAAABBQFgAX8AAwMCAAAEBQFwAQICBxQDATAAAAExAAEIJGltcG9ydHMBAAoVAgkAIABBABEAAAsJACAAQQERAAALAC8JcHJvZHVjZXJzAQxwcm9jZXNzZWQtYnkBDXdpdC1jb21wb25lbnQHMC4yMTYuMACZAQRuYW1lABMSd2l0LWNvbXBvbmVudDpzaGltAX0CAD9kdG9yLVtleHBvcnRdY2hpa29za2k6Z2xpdGNoLWFydC9wbmctZ2xpdGNoYWJsZUAwLjMuNS1zY2FuLWxpbmUBOWR0b3ItW2V4cG9ydF1jaGlrb3NraTpnbGl0Y2gtYXJ0L3BuZy1nbGl0Y2hhYmxlQDAuMy41LXBuZw');
+    const module1 = base64Compile('AGFzbQEAAAABBQFgAX8AAwMCAAAEBQFwAQICBxQDATAAAAExAAEIJGltcG9ydHMBAAoVAgkAIABBABEAAAsJACAAQQERAAALAC8JcHJvZHVjZXJzAQxwcm9jZXNzZWQtYnkBDXdpdC1jb21wb25lbnQHMC4yMTYuMACZAQRuYW1lABMSd2l0LWNvbXBvbmVudDpzaGltAX0CAD9kdG9yLVtleHBvcnRdY2hpa29za2k6Z2xpdGNoLWFydC9wbmctZ2xpdGNoYWJsZUAwLjMuNi1zY2FuLWxpbmUBOWR0b3ItW2V4cG9ydF1jaGlrb3NraTpnbGl0Y2gtYXJ0L3BuZy1nbGl0Y2hhYmxlQDAuMy42LXBuZw');
     const module2 = base64Compile('AGFzbQEAAAABBQFgAX8AAhoDAAEwAAAAATEAAAAIJGltcG9ydHMBcAECAgkIAQBBAAsCAAEALwlwcm9kdWNlcnMBDHByb2Nlc3NlZC1ieQENd2l0LWNvbXBvbmVudAcwLjIxNi4wABwEbmFtZQAVFHdpdC1jb21wb25lbnQ6Zml4dXBz');
     ({ exports: exports0 } = yield instantiateCore(yield module1));
     ({ exports: exports1 } = yield instantiateCore(yield module0, {
-      '[export]chikoski:glitch-art/png-glitchable@0.3.5': {
+      '[export]chikoski:glitch-art/png-glitchable@0.3.6': {
         '[resource-drop]png': trampoline3,
         '[resource-drop]scan-line': trampoline1,
         '[resource-new]png': trampoline2,
@@ -409,14 +409,14 @@ const $init = (() => {
     ({ exports: exports2 } = yield instantiateCore(yield module2, {
       '': {
         $imports: exports0.$imports,
-        '0': exports1['chikoski:glitch-art/png-glitchable@0.3.5#[dtor]scan-line'],
-        '1': exports1['chikoski:glitch-art/png-glitchable@0.3.5#[dtor]png'],
+        '0': exports1['chikoski:glitch-art/png-glitchable@0.3.6#[dtor]scan-line'],
+        '1': exports1['chikoski:glitch-art/png-glitchable@0.3.6#[dtor]png'],
       },
     }));
     memory0 = exports1.memory;
-    postReturn0 = exports1['cabi_post_chikoski:glitch-art/png-glitchable@0.3.5#[method]png.read'];
+    postReturn0 = exports1['cabi_post_chikoski:glitch-art/png-glitchable@0.3.6#[method]png.read'];
     realloc0 = exports1.cabi_realloc;
-    postReturn1 = exports1['cabi_post_chikoski:glitch-art/png-glitchable@0.3.5#[method]png.get-scan-lines'];
+    postReturn1 = exports1['cabi_post_chikoski:glitch-art/png-glitchable@0.3.6#[method]png.get-scan-lines'];
   })();
   let promise, resolve, reject;
   function runNext (value) {
@@ -442,10 +442,10 @@ const $init = (() => {
 })();
 
 await $init;
-const pngGlitchable035 = {
+const pngGlitchable036 = {
   Png: Png,
   ScanLine: ScanLine,
   
 };
 
-export { pngGlitchable035 as pngGlitchable, pngGlitchable035 as 'chikoski:glitch-art/png-glitchable@0.3.5',  }
+export { pngGlitchable036 as pngGlitchable, pngGlitchable036 as 'chikoski:glitch-art/png-glitchable@0.3.6',  }

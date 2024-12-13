@@ -1,5 +1,5 @@
 import type { Size } from "./model/size";
-import { pngGlitchable } from "./png-glitchable/png-glitch"
+import { pngGlitchable } from "./png-glitchable/png-glitch.js";
 
 console.log("from worker");
 
@@ -29,16 +29,16 @@ class GlitchFilter {
 		this.filter = new TransformStream(this);
 	}
 
-    transform(
-        frame: VideoFrame,
+	transform(
+		frame: VideoFrame,
 		conteroller: TransformStreamDefaultController<VideoFrame>,
-    ) {
-        if(this.gc != null) {
-            this.doTransform(frame, conteroller, this.gc);
-        }else {
-            conteroller.enqueue(frame);
-        }
-    }
+	) {
+		if (this.gc != null) {
+			this.doTransform(frame, conteroller, this.gc);
+		} else {
+			conteroller.enqueue(frame);
+		}
+	}
 
 	private async doTransform(
 		frame: VideoFrame,
@@ -63,26 +63,26 @@ class GlitchFilter {
 			);
 		}
 
-        const imageData = gc.getImageData(0, 0, this.width, this.height);
-        const buffer = new Uint8Array(imageData.data);
-        
-        const glitcher = await pngGlitchable.Png.create(buffer, this.width, this.height);
-        
-        glitcher.getScanLines().forEach((scanLine, index) => {
-            if(index % 351 < 40) {
-                scanLine.setFilterType("paeth");
-            }
-        });
-        
-        const glitched = glitcher.read();
-        const bitmap = await createImageFromPng(glitched);
-        const videoFrame = new VideoFrame(bitmap, { timestamp: frame.timestamp });
-        frame.close();
-        conteroller.enqueue(videoFrame);
+		const pngImage = await this.canvas.convertToBlob({ type: "image/png" });
+		const buffer = new Uint8Array(await pngImage.arrayBuffer());
+
+		const glitcher = await pngGlitchable.Png.create(buffer);
+
+		glitcher.getScanLines().forEach((scanLine, index) => {
+			if (index % 351 < 40) {
+				scanLine.setFilterType("paeth");
+			}
+		});
+
+		const glitched = glitcher.read();
+		const bitmap = await createImageFromPng(glitched);
+		const videoFrame = new VideoFrame(bitmap, { timestamp: frame.timestamp });
+		frame.close();
+		conteroller.enqueue(videoFrame);
 	}
 }
 
 function createImageFromPng(data: Uint8Array): Promise<ImageBitmap> {
-    const blob = new Blob([data], {type: "image/png"});
-    return createImageBitmap(blob);
+	const blob = new Blob([data], { type: "image/png" });
+	return createImageBitmap(blob);
 }

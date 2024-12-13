@@ -1,4 +1,4 @@
-package chikoski:glitch-art@0.3.5;
+package chikoski:glitch-art@0.3.6;
 
 interface png-glitchable {
 
@@ -24,7 +24,7 @@ interface png-glitchable {
         get-scan-lines: func() -> list<scan-line>;
         read: func() -> result<list<u8>>;
 
-        create: static func(data: list<u8>, width: u32, height: u32) -> result<png>;
+        create: static func(data: list<u8>) -> result<png>;
     }
 
 }
